@@ -7,7 +7,10 @@ AbstractInterruptibleChannel, AbstractSelectableChannel, DatagramChannel, FileCh
 
 一般我们用的最多的是:   
 DatagramChannel:从UDP中读写网络数据
+
 FileChannel:从文件中读写数据
+
 ServerSocketChannel:针对面向流的侦听套接字的可选择通道,监听新进来的TCP连接，对每个新进的连接都会创建一个新的SocketChannel.
+
 SocketChannel:从TCP中读写网络中的数据
 
