@@ -11,6 +11,11 @@ import org.apache.mina.core.session.IoSession;
 import org.apache.mina.filter.codec.ProtocolEncoderAdapter;
 import org.apache.mina.filter.codec.ProtocolEncoderOutput;
 
+/***
+ * 编码服务端用
+ * @author gaoyuandong
+ *
+ */
 public class ImageResponseEncoder extends ProtocolEncoderAdapter {
 
 	/**

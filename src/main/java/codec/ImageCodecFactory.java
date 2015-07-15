@@ -5,6 +5,11 @@ import org.apache.mina.filter.codec.ProtocolCodecFactory;
 import org.apache.mina.filter.codec.ProtocolDecoder;
 import org.apache.mina.filter.codec.ProtocolEncoder;
 
+/***
+ * 编码工程类
+ * @author gaoyuandong
+ *
+ */
 public class ImageCodecFactory implements ProtocolCodecFactory {
 
 	private ProtocolDecoder decoder;

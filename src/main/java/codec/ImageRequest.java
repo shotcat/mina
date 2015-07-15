@@ -1,5 +1,10 @@
 package codec;
 
+/***
+ * 请求消息
+ * @author gaoyuandong
+ *
+ */
 public class ImageRequest {
 
 	private int width;

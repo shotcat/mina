@@ -10,7 +10,11 @@ import org.apache.mina.core.buffer.IoBuffer;
 import org.apache.mina.core.session.IoSession;
 import org.apache.mina.filter.codec.CumulativeProtocolDecoder;
 import org.apache.mina.filter.codec.ProtocolDecoderOutput;
-
+/***
+ * 解码客户端用
+ * @author gaoyuandong
+ *
+ */
 public class ImageResponseDecoder extends CumulativeProtocolDecoder {
 	
 	private static final String DECODER_STATE_KEY = ImageResponseDecoder.class.getName() + ".STATE";

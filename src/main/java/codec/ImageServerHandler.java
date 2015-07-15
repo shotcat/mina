@@ -3,7 +3,11 @@ package codec;
 import org.apache.mina.core.service.IoHandlerAdapter;
 import org.apache.mina.core.session.IdleStatus;
 import org.apache.mina.core.session.IoSession;
-
+/***
+ * 服务端处理类
+ * @author gaoyuandong
+ *
+ */
 public class ImageServerHandler extends IoHandlerAdapter {
 
 	@Override
