@@ -31,7 +31,6 @@ public class MessageServer {
 		acceptor = new NioSocketAcceptor();
 		//添加日志过滤器
 		acceptor.getFilterChain().addLast("logger", new LoggingFilter());
-		//添加消息编码解码
 		acceptor.getFilterChain().addLast("codec", new ProtocolCodecFilter(new TextLineCodecFactory(Charset.forName("UTF-8"))));
 		//创建心跳消息工厂
 		MessageKeepAliveMessageFactory messageKeepAliveMessageFactory = new MessageKeepAliveMessageFactory();
@@ -44,6 +43,7 @@ public class MessageServer {
         //继续调用IOhandlerAdapter 中的sessionidle时间
         keepAliveFilter.setForwardEvent(true);
         acceptor.getFilterChain().addLast("keepAlive", keepAliveFilter);
+      //添加消息编码解码
 		acceptor.getSessionConfig().setIdleTime(IdleStatus.BOTH_IDLE, 10);
 		acceptor.getSessionConfig().setReadBufferSize(2048);
 		acceptor.setHandler(new MessageHandler(acceptor));
