@@ -2,6 +2,8 @@ package chat.util;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -54,5 +56,36 @@ public class ByteUtils {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+
+
+	public static byte[] int2ByteArray(int i) {
+		ByteArrayOutputStream buf = new ByteArrayOutputStream();
+		DataOutputStream dos= new DataOutputStream(buf);
+		try {
+			dos.writeInt(i);
+			byte[] b = buf.toByteArray();
+			dos.close();
+			buf.close();
+			return b;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	public static int ByteArray2Int(byte b[])  {
+		
+		ByteArrayInputStream buf = new ByteArrayInputStream(b);
+		DataInputStream dis= new DataInputStream (buf);
+		try {
+			return dis.readInt();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return 0;
 	}
 }

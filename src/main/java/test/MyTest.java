@@ -1,10 +1,10 @@
 package test;
 
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
-
-import org.apache.mina.proxy.utils.ByteUtilities;
-
+/***
+ * 测试
+ * @author gaoyuandong
+ *
+ */
 public class MyTest {
 
 	
