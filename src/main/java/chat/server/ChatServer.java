@@ -66,7 +66,6 @@ public class ChatServer {
 		try {
 			new ChatServer("192.168.1.144", 6666).start();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

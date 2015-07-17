@@ -14,4 +14,10 @@ ServerSocketChannel:针对面向流的侦听套接字的可选择通道,监听�
 
 SocketChannel:从TCP中读写网络中的数据
 
-具体使用请查看 源代码案例
+此代码是自己在看 Apache Mina的时候写的例子
+一、包含time echo 案例
+二、发送图片并返回案例
+三、自定义消息编码的案例
+四、apache mina 心跳包机制的使用案例
+五、apache UDP使用案例
+六、综合案例（待完善）
