@@ -1,11 +1,11 @@
 package chat.message;
 
+import chat.constant.Constant;
 import chat.util.ByteUtils;
 
 public abstract class AbstractChatMessage  {
 
-	public final static int MESSAGE_TYPE_COUNT = 4;
-	public final static int MESSAGE_HEAD_COUNT = 4;
+
 	private int messageType;
 	
 	public int getMessageType() {
@@ -26,10 +26,10 @@ public abstract class AbstractChatMessage  {
 	public byte[] toBytes() {
 		
 		byte[] body = body2Bytes();
-		int len = body.length + MESSAGE_TYPE_COUNT;
+		int len = body.length + Constant.MESSAGE_TYPE_COUNT;
 		byte[] by = new byte[len];
-		System.arraycopy(ByteUtils.int2ByteArray(messageType), 0, by, 0,MESSAGE_TYPE_COUNT);
-		System.arraycopy(body, 0, by, MESSAGE_TYPE_COUNT, body.length);
+		System.arraycopy(ByteUtils.int2ByteArray(messageType), 0, by, 0,Constant.MESSAGE_TYPE_COUNT);
+		System.arraycopy(body, 0, by, Constant.MESSAGE_TYPE_COUNT, body.length);
 		return by;
 		
 	}

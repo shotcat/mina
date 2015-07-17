@@ -41,7 +41,6 @@ public class ChatServer {
 				//添加日志过滤器
 				acceptor.getFilterChain().addLast("logger", new LoggingFilter());
 				acceptor.getFilterChain().addLast("codec", new ProtocolCodecFilter(new ChatMessageProtocolCodecFactory()));
-				acceptor.getFilterChain().addLast("codea", new ProtocolCodecFilter(new TextLineCodecFactory(Charset.forName("UTF-8"))));
 				//创建心跳消息工厂
 				ChatMessageKeepAliveMessageFactory messageKeepAliveMessageFactory = new ChatMessageKeepAliveMessageFactory();
 				//创建心跳过滤器 在读通道空闲时候,指定时间间隔的

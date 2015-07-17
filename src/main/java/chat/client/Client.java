@@ -38,6 +38,16 @@ public class Client   extends IoHandlerAdapter{
 		msg.setText("xxxx");
 		session.write(msg);
 	}
+	@Override
+	public void messageReceived(IoSession session, Object message) throws Exception {
+		
+		System.err.println(message +"SSSSSSSSSSSSS");
+		System.err.println("接收到消息了....");
+	}
+	@Override
+	public void messageSent(IoSession session, Object message) throws Exception {
+		System.err.println(message +"发送数据....");
+	}
 	
 	
 }

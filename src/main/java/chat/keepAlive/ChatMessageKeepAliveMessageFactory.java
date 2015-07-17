@@ -3,6 +3,10 @@ package chat.keepAlive;
 import org.apache.mina.core.session.IoSession;
 import org.apache.mina.filter.keepalive.KeepAliveMessageFactory;
 
+import chat.constant.Constant;
+import chat.message.ChatHeartRequestMessage;
+import chat.message.ChatHeartResponseMessage;
+
 /***
  * 心跳
  * @author gaoyuandong
@@ -10,12 +14,11 @@ import org.apache.mina.filter.keepalive.KeepAliveMessageFactory;
  */
 public class ChatMessageKeepAliveMessageFactory implements KeepAliveMessageFactory {
 
-	private final static String REQUEST_HANDLER = "0XAA";
-	private final static String RESPONSE_HANDLER = "0XFF";
+	
 	public boolean isRequest(IoSession session, Object message) {
 		
 		
-		if (message.equals(REQUEST_HANDLER)) {
+		if (message instanceof ChatHeartRequestMessage) {
 			System.err.println("请求心跳包信息 "+ message);
 			return true;
 		}
@@ -23,7 +26,7 @@ public class ChatMessageKeepAliveMessageFactory implements KeepAliveMessageFacto
 	}
 
 	public boolean isResponse(IoSession session, Object message) {
-		if (message.equals(RESPONSE_HANDLER)) {
+		if (message instanceof ChatHeartResponseMessage) {
 			System.err.println("响应心跳包信息" + message);
 			
 			return true;
@@ -33,12 +36,14 @@ public class ChatMessageKeepAliveMessageFactory implements KeepAliveMessageFacto
 
 	public Object getRequest(IoSession session) {
 		System.err.println("getRequest");
-		return REQUEST_HANDLER;
+		ChatHeartRequestMessage chatHeartRequestMessage = new ChatHeartRequestMessage();
+		return chatHeartRequestMessage;
 	}
 
 	public Object getResponse(IoSession session, Object request) {
 		System.err.println("getResponse");
-		return RESPONSE_HANDLER;
+		ChatHeartResponseMessage chatHeartResponseMessage = new ChatHeartResponseMessage();
+		return chatHeartResponseMessage;
 	}
 
 }
