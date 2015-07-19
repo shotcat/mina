@@ -2,11 +2,9 @@ package chat.server;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.nio.charset.Charset;
 
 import org.apache.mina.core.session.IdleStatus;
 import org.apache.mina.filter.codec.ProtocolCodecFilter;
-import org.apache.mina.filter.codec.textline.TextLineCodecFactory;
 import org.apache.mina.filter.keepalive.KeepAliveFilter;
 import org.apache.mina.filter.keepalive.KeepAliveRequestTimeoutHandler;
 import org.apache.mina.filter.logging.LoggingFilter;
@@ -14,9 +12,7 @@ import org.apache.mina.transport.socket.nio.NioSocketAcceptor;
 
 import chat.codec.ChatMessageProtocolCodecFactory;
 import chat.handler.ChatMessageHandler;
-import chat.keepAlive.ChatMessageKeepAliveMessageFactory;
-import keepAlive.MessageHandler;
-import keepAlive.MessageKeepAliveMessageFactory;
+import chat.keepalive.ChatMessageKeepAliveMessageFactory;
 
 /***
  * chat服务类

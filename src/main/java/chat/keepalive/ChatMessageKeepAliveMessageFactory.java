@@ -1,4 +1,4 @@
-package chat.keepAlive;
+package chat.keepalive;
 
 import org.apache.mina.core.session.IoSession;
 import org.apache.mina.filter.keepalive.KeepAliveMessageFactory;
