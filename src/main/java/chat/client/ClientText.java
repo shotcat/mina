@@ -1,5 +1,7 @@
 package chat.client;
 
+import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.net.InetSocketAddress;
 
 import org.apache.mina.core.future.ConnectFuture;
@@ -11,9 +13,12 @@ import org.apache.mina.filter.codec.ProtocolCodecFilter;
 import org.apache.mina.transport.socket.nio.NioSocketConnector;
 
 import chat.codec.ChatMessageProtocolCodecFactory;
+import chat.constant.Constant;
+import chat.message.ChatFileMesage;
 import chat.message.DefaultChatMessage;
+import chat.util.FileUtil;
 
-public class Client   extends IoHandlerAdapter{
+public class ClientText   extends IoHandlerAdapter{
 
 	
 	public void start() {
@@ -28,14 +33,15 @@ public class Client   extends IoHandlerAdapter{
 	}
 	public static void main(String[] args) {
 		
-	   new Client().start();
+	   new ClientText().start();
 		
 	}
 	@Override
 	public void sessionOpened(IoSession session) throws Exception {
+	   // byte[] bytes = FileUtil.File2byte("E:/sts/java-nio/src/main/java/text.txt");
 		DefaultChatMessage msg = new DefaultChatMessage();
-		msg.setMessageType(1);
-		msg.setText("xxxx");
+		msg.setMessageType(Constant.MESSAGE_TYPE_FULL_TXT);
+		msg.setText("冬天欢迎你....");;
 		session.write(msg);
 	}
 	@Override
