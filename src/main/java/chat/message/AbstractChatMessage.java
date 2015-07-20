@@ -2,10 +2,15 @@ package chat.message;
 
 import chat.constant.Constant;
 import chat.util.ByteUtils;
-
+/***
+ * 抽象消息实体类
+ * @author gaoyuandong
+ * @date   2015年7月20日 上午8:00:42
+ * @mail   466862016@qq.com
+ */
 public abstract class AbstractChatMessage  {
 
-
+	//消息类型
 	private int messageType;
 	
 	public int getMessageType() {

@@ -15,9 +15,10 @@ import chat.handler.ChatMessageHandler;
 import chat.keepalive.ChatMessageKeepAliveMessageFactory;
 
 /***
- * chat服务类
+ *  消息服务类
  * @author gaoyuandong
- *
+ * @date   2015年7月20日 上午8:03:48
+ * @mail   466862016@qq.com
  */
 public class ChatServer {
 

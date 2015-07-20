@@ -7,7 +7,12 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-
+/***
+ * 文件与字节数组互转工具类
+ * @author gaoyuandong
+ * @date   2015年7月20日 上午8:04:22
+ * @mail   466862016@qq.com
+ */
 public class FileUtil {
 
 	public static byte[] File2byte(String filePath){

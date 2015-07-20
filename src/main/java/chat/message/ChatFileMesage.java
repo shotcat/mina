@@ -1,18 +1,15 @@
 package chat.message;
 
-import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 
 import chat.util.FileUtil;
 
-/**
- * 
+/***
+ * 带文件上传的消息实体类
  * @author gaoyuandong
- *
+ * @date   2015年7月20日 上午8:01:20
+ * @mail   466862016@qq.com
  */
 public class ChatFileMesage extends DefaultChatMessage {
 
@@ -30,6 +27,7 @@ public class ChatFileMesage extends DefaultChatMessage {
 	@Override
 	public void bytes2Body(byte[] bytes) {
 		try {
+			//TODO
 			file = new File("1.txt");
 			FileUtil.byte2File(bytes, "d:", "1.txt");
 			FileOutputStream fileOutputStream = new FileOutputStream(file);

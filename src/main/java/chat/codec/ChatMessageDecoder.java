@@ -14,9 +14,10 @@ import chat.message.DefaultChatMessage;
 import chat.util.ByteUtils;
 
 /***
- * 消息解码
+ * 接收的消息解码器
  * @author gaoyuandong
- *
+ * @date   2015年7月20日 上午7:45:14
+ * @mail   466862016@qq.com
  */
 public class ChatMessageDecoder extends CumulativeProtocolDecoder {
 

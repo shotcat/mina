@@ -1,13 +1,10 @@
 package chat.client;
 
-import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.net.InetSocketAddress;
 
 import org.apache.mina.core.future.ConnectFuture;
-import org.apache.mina.core.service.IoHandler;
 import org.apache.mina.core.service.IoHandlerAdapter;
-import org.apache.mina.core.session.IdleStatus;
 import org.apache.mina.core.session.IoSession;
 import org.apache.mina.filter.codec.ProtocolCodecFilter;
 import org.apache.mina.transport.socket.nio.NioSocketConnector;
@@ -15,9 +12,12 @@ import org.apache.mina.transport.socket.nio.NioSocketConnector;
 import chat.codec.ChatMessageProtocolCodecFactory;
 import chat.constant.Constant;
 import chat.message.ChatFileMesage;
-import chat.message.DefaultChatMessage;
-import chat.util.FileUtil;
-
+/***
+ * 客户端-发送带文件的消息
+ * @author gaoyuandong
+ * @date   2015年7月20日 上午7:43:34
+ * @mail   466862016@qq.com
+ */
 public class ClientFile   extends IoHandlerAdapter{
 
 	

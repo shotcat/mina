@@ -1,5 +1,10 @@
 package chat.message;
-
+/***
+ *  默认只要发送或者接收文字消息实体
+ * @author gaoyuandong
+ * @date   2015年7月20日 上午8:03:02
+ * @mail   466862016@qq.com
+ */
 public class DefaultChatMessage extends AbstractChatMessage {
 
 	private String text;

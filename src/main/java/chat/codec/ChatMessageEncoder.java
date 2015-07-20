@@ -10,9 +10,10 @@ import chat.message.AbstractChatMessage;
 import chat.message.ChatHeartRequestMessage;
 import chat.message.DefaultChatMessage;
 /***
- * 消息编码
+ * 要发送的消息进行编码
  * @author gaoyuandong
- *
+ * @date   2015年7月20日 上午7:56:15
+ * @mail   466862016@qq.com
  */
 public class ChatMessageEncoder extends ProtocolEncoderAdapter {
 

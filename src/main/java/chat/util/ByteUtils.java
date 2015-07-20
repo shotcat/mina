@@ -9,9 +9,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 /***
  * 字节数组与对象之间的转换工具类
- * 
  * @author gaoyuandong
- *
+ * @date   2015年7月20日 上午8:04:10
+ * @mail   466862016@qq.com
  */
 public class ByteUtils {
 

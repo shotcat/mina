@@ -3,9 +3,10 @@ package chat.message;
 import chat.constant.Constant;
 
 /***
- * 消息类型
+ * 心跳机制请求消息实体类
  * @author gaoyuandong
- *
+ * @date   2015年7月20日 上午8:02:07
+ * @mail   466862016@qq.com
  */
 public class ChatHeartRequestMessage extends AbstractChatMessage {
 

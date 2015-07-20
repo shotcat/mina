@@ -1,5 +1,11 @@
 package chat.constant;
 
+/***
+ * 常量类
+ * @author gaoyuandong
+ * @date   2015年7月20日 上午7:57:30
+ * @mail   466862016@qq.com
+ */
 public class Constant {
 
 	public final static int MESSAGE_TYPE_COUNT = 4;
