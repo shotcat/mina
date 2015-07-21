@@ -30,4 +30,9 @@ public class DefaultChatMessage extends AbstractChatMessage {
 		return text.getBytes();
 	}
 
+	@Override
+	public String toString() {
+		return "DefaultChatMessage [text=" + text + "]";
+	}
+
 }

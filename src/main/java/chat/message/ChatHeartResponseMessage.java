@@ -30,4 +30,11 @@ public class ChatHeartResponseMessage extends AbstractChatMessage {
 		return heartResponse.getBytes();
 	}
 
+
+
+	@Override
+	public String toString() {
+		return "ChatHeartResponseMessage [heartResponse=" + heartResponse + "]";
+	}
+
 }

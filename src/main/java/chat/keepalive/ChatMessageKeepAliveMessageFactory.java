@@ -1,5 +1,6 @@
 package chat.keepalive;
 
+import org.apache.log4j.Logger;
 import org.apache.mina.core.session.IoSession;
 import org.apache.mina.filter.keepalive.KeepAliveMessageFactory;
 
@@ -17,11 +18,13 @@ import chat.message.ChatHeartResponseMessage;
 public class ChatMessageKeepAliveMessageFactory implements KeepAliveMessageFactory {
 
 	
+	private static Logger logger = Logger.getLogger(ChatMessageKeepAliveMessageFactory.class);
+	
 	public boolean isRequest(IoSession session, Object message) {
 		
 		
 		if (message instanceof ChatHeartRequestMessage) {
-			System.err.println("请求心跳包信息 "+ message);
+			logger.info("请求心跳包信息" + message);
 			return true;
 		}
 		return false;
@@ -29,7 +32,7 @@ public class ChatMessageKeepAliveMessageFactory implements KeepAliveMessageFacto
 
 	public boolean isResponse(IoSession session, Object message) {
 		if (message instanceof ChatHeartResponseMessage) {
-			System.err.println("响应心跳包信息" + message);
+			logger.info("响应心跳包信息" + message);
 			
 			return true;
 		}
@@ -45,7 +48,7 @@ public class ChatMessageKeepAliveMessageFactory implements KeepAliveMessageFacto
 	}
 
 	public Object getResponse(IoSession session, Object request) {
-		System.err.println("getResponse");
+		logger.info("getResponse" + session.getRemoteAddress());
 		ChatHeartResponseMessage chatHeartResponseMessage = new ChatHeartResponseMessage();
 		return chatHeartResponseMessage;
 	}

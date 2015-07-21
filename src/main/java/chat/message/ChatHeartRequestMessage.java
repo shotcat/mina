@@ -29,4 +29,9 @@ public class ChatHeartRequestMessage extends AbstractChatMessage {
 		return heartRequest.getBytes();
 	}
 
+	@Override
+	public String toString() {
+		return "ChatHeartRequestMessage [heartRequest=" + heartRequest + "]";
+	}
+
 }

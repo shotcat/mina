@@ -3,6 +3,7 @@ package chat.server;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 
+import org.apache.log4j.Logger;
 import org.apache.mina.core.session.IdleStatus;
 import org.apache.mina.filter.codec.ProtocolCodecFilter;
 import org.apache.mina.filter.keepalive.KeepAliveFilter;
@@ -21,7 +22,9 @@ import chat.keepalive.ChatMessageKeepAliveMessageFactory;
  * @mail   466862016@qq.com
  */
 public class ChatServer {
+	
 
+	private static Logger logger = Logger.getLogger(ChatServer.class);
 	private String host;
 	private int port;
 	private NioSocketAcceptor acceptor;
@@ -33,7 +36,7 @@ public class ChatServer {
 	
 	
 	public void start() throws IOException {
-		//创建一个套接字接收器
+				//创建一个套接字接收器
 				acceptor = new NioSocketAcceptor();
 				//添加日志过滤器
 				acceptor.getFilterChain().addLast("logger", new LoggingFilter());
@@ -53,14 +56,17 @@ public class ChatServer {
 				acceptor.getSessionConfig().setIdleTime(IdleStatus.BOTH_IDLE,30);
 				acceptor.getSessionConfig().setReadBufferSize(2048);
 				acceptor.setHandler(new ChatMessageHandler(acceptor));
+				
+				logger.info("服务器正在启动....");
 				acceptor.bind(new InetSocketAddress(host, port));
-				System.err.println("服务器已经启动....");
+				logger.info("服务器已经启动....");
 	}
 	
 	
 	public static void main(String[] args) {
 		
 		try {
+			
 			new ChatServer("192.168.1.144", 6666).start();
 		} catch (IOException e) {
 			e.printStackTrace();

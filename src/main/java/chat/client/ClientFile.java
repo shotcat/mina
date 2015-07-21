@@ -3,6 +3,7 @@ package chat.client;
 import java.io.File;
 import java.net.InetSocketAddress;
 
+import org.apache.log4j.Logger;
 import org.apache.mina.core.future.ConnectFuture;
 import org.apache.mina.core.future.IoFuture;
 import org.apache.mina.core.future.IoFutureListener;
@@ -22,7 +23,10 @@ import chat.message.ChatFileMesage;
  */
 public class ClientFile   extends IoHandlerAdapter{
 
+	private static Logger logger = Logger.getLogger(ClientFile.class);
 	private KeepAliveHandler keepAliveHandler;
+	
+	
 	public void start() {
 		NioSocketConnector connector = new NioSocketConnector();
 		connector.getFilterChain().addLast("codec", new ProtocolCodecFilter(new ChatMessageProtocolCodecFactory()));
@@ -32,7 +36,7 @@ public class ClientFile   extends IoHandlerAdapter{
 		connect.addListener(new IoFutureListener<IoFuture>() {
 
 			public void operationComplete(IoFuture future) {
-				System.err.println("=================");
+				logger.info("已经成功建立连接");
 //				IoSession session = future.getSession();
 //				if (keepAliveHandler == null) {
 //					keepAliveHandler = new KeepAliveHandler();
@@ -66,19 +70,19 @@ public class ClientFile   extends IoHandlerAdapter{
 	@Override
 	public void messageReceived(IoSession session, Object message) throws Exception {
 		
-		System.err.println("接收到消息了...." + message);
+		logger.info("接收到消息了...." + message);
 	}
 	@Override
 	public void messageSent(IoSession session, Object message) throws Exception {
-		System.err.println("发送数据...." + message );
+		logger.info("发送数据...." + message );
 	}
 	@Override
 	public void sessionClosed(IoSession session) throws Exception {
-		System.err.println("sessionClosed");
+		logger.info("sessionClosed");
 	}
 	@Override
 	public void exceptionCaught(IoSession session, Throwable cause) throws Exception {
-		System.err.println("exceptionCaught");
+		logger.info("exceptionCaught" + cause.getMessage());
 	}
 	
 	

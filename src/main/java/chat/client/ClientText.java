@@ -2,6 +2,7 @@ package chat.client;
 
 import java.net.InetSocketAddress;
 
+import org.apache.log4j.Logger;
 import org.apache.mina.core.future.ConnectFuture;
 import org.apache.mina.core.service.IoHandlerAdapter;
 import org.apache.mina.core.session.IoSession;
@@ -19,6 +20,7 @@ import chat.message.DefaultChatMessage;
  */
 public class ClientText   extends IoHandlerAdapter{
 
+	private static Logger logger = Logger.getLogger(ClientText.class);
 	
 	public void start() {
 		NioSocketConnector connector = new NioSocketConnector();
@@ -46,12 +48,11 @@ public class ClientText   extends IoHandlerAdapter{
 	@Override
 	public void messageReceived(IoSession session, Object message) throws Exception {
 		
-		System.err.println(message +"SSSSSSSSSSSSS");
-		System.err.println("接收到消息了....");
+		logger.info("接收到消息了...." + message);
 	}
 	@Override
 	public void messageSent(IoSession session, Object message) throws Exception {
-		System.err.println(message +"发送数据....");
+		logger.info("发送消息了...." + message);
 	}
 	
 	

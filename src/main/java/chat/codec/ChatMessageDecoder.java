@@ -65,6 +65,6 @@ public class ChatMessageDecoder extends CumulativeProtocolDecoder {
 			chatMessage = new DefaultChatMessage();
 			break;
 		}
-		return   chatMessage;
+		return chatMessage;
 	}
 }

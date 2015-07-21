@@ -3,6 +3,7 @@ package chat.client;
 import java.io.File;
 import java.net.InetSocketAddress;
 
+import org.apache.log4j.Logger;
 import org.apache.mina.core.future.ConnectFuture;
 import org.apache.mina.core.future.IoFuture;
 import org.apache.mina.core.future.IoFutureListener;
@@ -21,8 +22,11 @@ import chat.message.ChatFileMesage;
  * @mail   466862016@qq.com
  */
 public class ClientFileAlive   extends IoHandlerAdapter{
-
+	
+	
+	private static Logger logger = Logger.getLogger(ClientFileAlive.class);
 	private KeepAliveHandler keepAliveHandler;
+	
 	public void start() {
 		NioSocketConnector connector = new NioSocketConnector();
 		connector.getFilterChain().addLast("codec", new ProtocolCodecFilter(new ChatMessageProtocolCodecFactory()));
@@ -32,9 +36,9 @@ public class ClientFileAlive   extends IoHandlerAdapter{
 		connect.addListener(new IoFutureListener<IoFuture>() {
 
 			public void operationComplete(IoFuture future) {
-				System.err.println("=================");
 				IoSession session = future.getSession();
 				if (keepAliveHandler == null) {
+					logger.info("准备发送心跳数据....");
 					keepAliveHandler = new KeepAliveHandler(session);
 					keepAliveHandler.runAlive();
 				}
@@ -66,8 +70,7 @@ public class ClientFileAlive   extends IoHandlerAdapter{
 	@Override
 	public void messageReceived(IoSession session, Object message) throws Exception {
 		
-		System.err.println(message +"SSSSSSSSSSSSS");
-		System.err.println("接收到消息了....");
+		System.err.println(session.getLocalAddress() + "接收到消息了....");
 	}
 	@Override
 	public void messageSent(IoSession session, Object message) throws Exception {

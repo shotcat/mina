@@ -3,6 +3,7 @@ package chat.client;
 import java.io.File;
 import java.net.InetSocketAddress;
 
+import org.apache.log4j.Logger;
 import org.apache.mina.core.future.ConnectFuture;
 import org.apache.mina.core.future.IoFuture;
 import org.apache.mina.core.future.IoFutureListener;
@@ -25,9 +26,14 @@ import chat.message.ChatFileMesage;
  */
 public class ClientFileReConnection   extends IoHandlerAdapter{
 
+	private static Logger logger = Logger.getLogger(ClientFileReConnection.class);
+	
 	private SessionStatusListener sessionStatusListener;
 	private KeepAliveMessageHandler keepAliveHandler;
+	
+	
 	public void start() {
+		logger.info("客户端正在启动...");
 		NioSocketConnector connector = new NioSocketConnector();
 		connector.getFilterChain().addLast("codec", new ProtocolCodecFilter(new ChatMessageProtocolCodecFactory()));
 		sessionStatusListener = new SessionStatusListener();
@@ -37,7 +43,6 @@ public class ClientFileReConnection   extends IoHandlerAdapter{
 		ConnectFuture connect = connector.connect();
 		connect.addListener(new IoFutureListener<IoFuture>() {
 			public void operationComplete(IoFuture future) {
-				IoSession session = future.getSession();
 				if (keepAliveHandler == null) {
 					keepAliveHandler = new KeepAliveMessageHandler(sessionStatusListener);
 					keepAliveHandler.runAlive();
@@ -45,6 +50,7 @@ public class ClientFileReConnection   extends IoHandlerAdapter{
 			}
 		});
 		connect.awaitUninterruptibly();
+		logger.info("客户端启动完成...");
 		while(true) {
 			try {
 				Thread.sleep(1000);
@@ -69,21 +75,20 @@ public class ClientFileReConnection   extends IoHandlerAdapter{
 	}
 	@Override
 	public void messageReceived(IoSession session, Object message) throws Exception {
-		
-		System.err.println("接收到消息了...." + message);
+		logger.info(session.getRemoteAddress() + "接收到消息了...." + message);
 	}
 	@Override
 	public void messageSent(IoSession session, Object message) throws Exception {
-		System.err.println("发送数据...." + message );
+		logger.info(session.getRemoteAddress() + "发送数据...." + message);
 	}
 	@Override
 	public void sessionClosed(IoSession session) throws Exception {
-		System.err.println("sessionClosed");
+		logger.info("sessionClosed");
 	}
 	@Override
 	public void exceptionCaught(IoSession session, Throwable cause) throws Exception {
 		cause.printStackTrace();
-		System.err.println("exceptionCaught" + cause);
+		logger.info("exceptionCaught");
 	}
 	
 	

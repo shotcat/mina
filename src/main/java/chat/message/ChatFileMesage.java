@@ -43,6 +43,11 @@ public class ChatFileMesage extends DefaultChatMessage {
 		byte [] fileBytes =  FileUtil.File2byte(file.getAbsolutePath());
 		return fileBytes;
 	}
+
+	@Override
+	public String toString() {
+		return "ChatFileMesage [file=" + file + "]";
+	}
 	 
 	
 
