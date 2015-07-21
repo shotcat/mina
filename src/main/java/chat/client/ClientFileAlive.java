@@ -20,7 +20,7 @@ import chat.message.ChatFileMesage;
  * @date   2015年7月20日 上午7:43:34
  * @mail   466862016@qq.com
  */
-public class ClientFile   extends IoHandlerAdapter{
+public class ClientFileAlive   extends IoHandlerAdapter{
 
 	private KeepAliveHandler keepAliveHandler;
 	public void start() {
@@ -33,11 +33,11 @@ public class ClientFile   extends IoHandlerAdapter{
 
 			public void operationComplete(IoFuture future) {
 				System.err.println("=================");
-//				IoSession session = future.getSession();
-//				if (keepAliveHandler == null) {
-//					keepAliveHandler = new KeepAliveHandler();
-//					keepAliveHandler.runAlive();
-//				}
+				IoSession session = future.getSession();
+				if (keepAliveHandler == null) {
+					keepAliveHandler = new KeepAliveHandler(session);
+					keepAliveHandler.runAlive();
+				}
 			}
 		});
 		connect.awaitUninterruptibly();
@@ -52,7 +52,7 @@ public class ClientFile   extends IoHandlerAdapter{
 	}
 	public static void main(String[] args) {
 		
-	   new ClientFile().start();
+	   new ClientFileAlive().start();
 		
 	}
 	@Override
@@ -66,19 +66,12 @@ public class ClientFile   extends IoHandlerAdapter{
 	@Override
 	public void messageReceived(IoSession session, Object message) throws Exception {
 		
-		System.err.println("接收到消息了...." + message);
+		System.err.println(message +"SSSSSSSSSSSSS");
+		System.err.println("接收到消息了....");
 	}
 	@Override
 	public void messageSent(IoSession session, Object message) throws Exception {
-		System.err.println("发送数据...." + message );
-	}
-	@Override
-	public void sessionClosed(IoSession session) throws Exception {
-		System.err.println("sessionClosed");
-	}
-	@Override
-	public void exceptionCaught(IoSession session, Throwable cause) throws Exception {
-		System.err.println("exceptionCaught");
+		System.err.println(message +"发送数据....");
 	}
 	
 	

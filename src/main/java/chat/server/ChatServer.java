@@ -43,14 +43,14 @@ public class ChatServer {
 				//创建心跳过滤器 在读通道空闲时候,指定时间间隔的
 		        KeepAliveFilter keepAliveFilter = new KeepAliveFilter(messageKeepAliveMessageFactory,IdleStatus.READER_IDLE, KeepAliveRequestTimeoutHandler.CLOSE);
 				//在读通道空闲时候，心跳包请求时间间隔
-		        keepAliveFilter.setRequestInterval(10);
+		        keepAliveFilter.setRequestInterval(15);
 		        //心跳包请求后等待反馈超时时间
-		        keepAliveFilter.setRequestTimeout(10);
+		        keepAliveFilter.setRequestTimeout(15);
 		        //继续调用IOhandlerAdapter 中的sessionidle时间
 		        keepAliveFilter.setForwardEvent(true);
 		        acceptor.getFilterChain().addLast("keepAlive", keepAliveFilter);
 		      //添加消息编码解码
-				acceptor.getSessionConfig().setIdleTime(IdleStatus.BOTH_IDLE, 10);
+				acceptor.getSessionConfig().setIdleTime(IdleStatus.BOTH_IDLE,30);
 				acceptor.getSessionConfig().setReadBufferSize(2048);
 				acceptor.setHandler(new ChatMessageHandler(acceptor));
 				acceptor.bind(new InetSocketAddress(host, port));

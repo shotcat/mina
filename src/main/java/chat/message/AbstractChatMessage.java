@@ -33,7 +33,7 @@ public abstract class AbstractChatMessage  {
 		byte[] body = body2Bytes();
 		int len = body.length + Constant.MESSAGE_TYPE_COUNT;
 		byte[] by = new byte[len];
-		System.arraycopy(ByteUtils.int2ByteArray(messageType), 0, by, 0,Constant.MESSAGE_TYPE_COUNT);
+		System.arraycopy(ByteUtils.int2ByteArray(getMessageType()), 0, by, 0,Constant.MESSAGE_TYPE_COUNT);
 		System.arraycopy(body, 0, by, Constant.MESSAGE_TYPE_COUNT, body.length);
 		return by;
 		

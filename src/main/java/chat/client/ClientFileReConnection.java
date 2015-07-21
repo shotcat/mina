@@ -11,33 +11,37 @@ import org.apache.mina.core.session.IoSession;
 import org.apache.mina.filter.codec.ProtocolCodecFilter;
 import org.apache.mina.transport.socket.nio.NioSocketConnector;
 
+import chat.adapter.ReConnectionFilterAdapter;
 import chat.codec.ChatMessageProtocolCodecFactory;
 import chat.constant.Constant;
+import chat.listener.SessionStatusListener;
 import chat.message.ChatFileMesage;
 /***
  * 客户端-发送带文件的消息
+ * 心跳机制并且断线重连功能
  * @author gaoyuandong
  * @date   2015年7月20日 上午7:43:34
  * @mail   466862016@qq.com
  */
-public class ClientFile   extends IoHandlerAdapter{
+public class ClientFileReConnection   extends IoHandlerAdapter{
 
-	private KeepAliveHandler keepAliveHandler;
+	private SessionStatusListener sessionStatusListener;
+	private KeepAliveMessageHandler keepAliveHandler;
 	public void start() {
 		NioSocketConnector connector = new NioSocketConnector();
 		connector.getFilterChain().addLast("codec", new ProtocolCodecFilter(new ChatMessageProtocolCodecFactory()));
+		sessionStatusListener = new SessionStatusListener();
+		connector.getFilterChain().addFirst("reConnection", new ReConnectionFilterAdapter(connector,sessionStatusListener));
 		connector.setHandler(this);
-		ConnectFuture connect = connector.connect(new InetSocketAddress("192.168.1.144", 6666));
-	
+		connector.setDefaultRemoteAddress(new InetSocketAddress("192.168.1.144", 6666));
+		ConnectFuture connect = connector.connect();
 		connect.addListener(new IoFutureListener<IoFuture>() {
-
 			public void operationComplete(IoFuture future) {
-				System.err.println("=================");
-//				IoSession session = future.getSession();
-//				if (keepAliveHandler == null) {
-//					keepAliveHandler = new KeepAliveHandler();
-//					keepAliveHandler.runAlive();
-//				}
+				IoSession session = future.getSession();
+				if (keepAliveHandler == null) {
+					keepAliveHandler = new KeepAliveMessageHandler(sessionStatusListener);
+					keepAliveHandler.runAlive();
+				}
 			}
 		});
 		connect.awaitUninterruptibly();
@@ -52,7 +56,7 @@ public class ClientFile   extends IoHandlerAdapter{
 	}
 	public static void main(String[] args) {
 		
-	   new ClientFile().start();
+	   new ClientFileReConnection().start();
 		
 	}
 	@Override
@@ -78,7 +82,8 @@ public class ClientFile   extends IoHandlerAdapter{
 	}
 	@Override
 	public void exceptionCaught(IoSession session, Throwable cause) throws Exception {
-		System.err.println("exceptionCaught");
+		cause.printStackTrace();
+		System.err.println("exceptionCaught" + cause);
 	}
 	
 	

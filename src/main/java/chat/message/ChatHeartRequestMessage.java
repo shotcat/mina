@@ -14,6 +14,7 @@ public class ChatHeartRequestMessage extends AbstractChatMessage {
 	
 	@Override
 	public int getMessageType() {
+		super.setMessageType(Constant.MESSAGE_TYPE_HEART_REQUEST);
 		return Constant.MESSAGE_TYPE_HEART_REQUEST;
 	}
 	

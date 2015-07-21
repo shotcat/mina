@@ -37,9 +37,11 @@ public class ChatMessageKeepAliveMessageFactory implements KeepAliveMessageFacto
 	}
 
 	public Object getRequest(IoSession session) {
-		System.err.println("getRequest");
-		ChatHeartRequestMessage chatHeartRequestMessage = new ChatHeartRequestMessage();
-		return chatHeartRequestMessage;
+//		System.err.println("getRequest");
+//		ChatHeartRequestMessage chatHeartRequestMessage = new ChatHeartRequestMessage();
+//		return chatHeartRequestMessage;
+		
+		return null;
 	}
 
 	public Object getResponse(IoSession session, Object request) {
