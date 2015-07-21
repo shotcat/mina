@@ -13,6 +13,7 @@ import org.apache.mina.filter.codec.ProtocolCodecFilter;
 import org.apache.mina.transport.socket.nio.NioSocketConnector;
 
 import chat.adapter.ReConnectionFilterAdapter;
+import chat.client.handler.KeepAliveMessageHandler;
 import chat.codec.ChatMessageProtocolCodecFactory;
 import chat.constant.Constant;
 import chat.listener.SessionStatusListener;

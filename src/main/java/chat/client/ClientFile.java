@@ -12,6 +12,7 @@ import org.apache.mina.core.session.IoSession;
 import org.apache.mina.filter.codec.ProtocolCodecFilter;
 import org.apache.mina.transport.socket.nio.NioSocketConnector;
 
+import chat.client.handler.KeepAliveHandler;
 import chat.codec.ChatMessageProtocolCodecFactory;
 import chat.constant.Constant;
 import chat.message.ChatFileMesage;

@@ -1,4 +1,4 @@
-package chat.client;
+package chat.client.handler;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
