@@ -9,6 +9,8 @@ import chat.message.ChatHeartResponseMessage;
 
 /***
  * 心跳机制
+ * 此心跳机制为被动模式
+ * 收到心跳请求立即响应心跳响应
  * 为 @org.apache.mina.filter.keepalive.KeepAliveFilter 提供心跳消息工厂类
  * 接收心跳请求并进行响应
  * @author gaoyuandong

@@ -7,7 +7,4 @@ public  class SessionStatusListener  {
 	public volatile  boolean isConnectioned;
 	public  IoSession ioSession;
 	
-
-	
-
 }
